@@ -1,0 +1,38 @@
+def intro():
+    print('After a drunken night out with friends, you awaken in a thick, dank forest. A slobbering orc is running towards you.\n')
+    print('A. Grab a nearby rock and throw it at the orc\nB. Lie down and wait to be mauled\nC. Run\n')
+    i = input()
+    if i == 'a' or i == 'A':rock()
+    if i == 'b' or i == 'B':print('Welp, that was quick. You died!')
+    if i == 'c' or i == 'C':run()
+def rock():
+    print('The orc is stunned, but regains control. He begins running towards you again.\n')
+    print('A. Run\nB. Throw another rock\nC. Run towards a nearby cave\n')
+    i = input()
+    if i == 'a' or i == 'A':run()
+    if i == 'b' or i == 'B':print('The rock flew well over the orcs head. You missed. You died!')
+    if i == 'c' or i == 'C':cave()
+def run():
+    print('You run as quickly as possible.\n')
+    print('A. Hide behind boulder\nB. Trapped, so you fight\nC. Run towards an abandoned town\n')
+    i = input()
+    if i == 'a' or i == 'A':print("You're easily spotted. You died!")
+    if i == 'b' or i == 'B':print("You're no match for an orc. You died!")
+    if i == 'c' or i == 'C':town()
+def town():
+    print('You notice a purple flower near your foot. Do you pick it up? Y/N\n')
+    i = input()
+    if i == 'y' or i == 'Y':print("You quickly hold out the purple flower. The orc was looking for love. This got weird, but you survived!")
+    if i == 'n' or i == 'N':print('Maybe you should have picked up the flower. You died!')
+def cave():
+    print('Before you fully enter, you notice a shiny sword on the ground. Do you pick up a sword. Y/N?\n')
+    i1 = input()
+    print('What do you do next?\n')
+    print('A. Hide in silence\nB. Fight\nC. Run\n')
+    i2 = input()
+    if i2 == 'a' or i2 == 'A':print('I think orcs can see very well in the dark, right? You died!')
+    if i2 == 'b' or i2 =='B':
+        if i1 == 'y' or i1 == 'Y':print('As the orc reached out to grab the sword, you pierced the blade into its chest. You survived!')
+        if i1 == 'n' or i1 == 'N':print("You're defenseless. You died!")
+    if i2 == 'c' or i2 == 'C':run()
+intro()
