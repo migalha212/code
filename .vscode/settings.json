@@ -5,6 +5,15 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "files.associations": {
-        "random": "cpp"
-    }
+        "random": "cpp",
+        "*.tcc": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "iomanip": "cpp",
+        "iostream": "cpp",
+        "iosfwd": "cpp",
+        "sstream": "cpp",
+        "numeric": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }
