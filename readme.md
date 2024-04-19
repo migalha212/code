@@ -1,1 +1,1 @@
-#C++ and python programs from classes :)
+C++ and python programs from classes :)
