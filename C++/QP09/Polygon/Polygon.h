@@ -12,9 +12,9 @@ public:
     Polygon();
     Polygon(std::vector<Point> vertices);
 
-    double perimiter() const;
+    double perimeter() const;
     void add_vertex(int index,Point point);
-    bool get_vertex(int index, Point point) const;
+    bool get_vertex(size_t index, Point &point);
     void show() const;
 
 private:
