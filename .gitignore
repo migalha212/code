@@ -1,0 +1,5 @@
+#pastas desnecessarias
+
+*.vscode
+*.pytest_cache
+*.exe
