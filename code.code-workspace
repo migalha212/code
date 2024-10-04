@@ -14,7 +14,11 @@
 			"iostream": "cpp",
 			"iosfwd": "cpp",
 			"sstream": "cpp",
-			"numeric": "cpp"
+			"numeric": "cpp",
+			"unordered_map": "cpp",
+			"unordered_set": "cpp",
+			"cstdlib": "cpp",
+			"algorithm": "cpp"
 		}
 	}
 }

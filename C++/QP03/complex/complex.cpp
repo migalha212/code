@@ -27,7 +27,6 @@ double norm(const complex& c){
 
 
 
-
 /*
 { complex a { 0, 1 }, b { 2, 1}, s, m;
   add(a, b, s); 

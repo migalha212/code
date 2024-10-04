@@ -3,7 +3,7 @@ using namespace std;
 void addone(int &a){a++;}
 
 int main(){
-    char a[] = " hello world";
+    char a[] = "Hello world!";
     for(char c : a)
     {
         cout << c;
