@@ -1,5 +1,9 @@
 #pastas desnecessarias
-
+*.code-workspace
 *.vscode
 *.pytest_cache
 *.exe
+#C library
+*.o
+*.so
+*.a
