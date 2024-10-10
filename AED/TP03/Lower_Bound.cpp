@@ -2,27 +2,25 @@
 #include <vector>
 using namespace std;
 
-int lowerbound(vector<int> & vec, int x){   //TODO: remake code to be correct
+int lowerbound(vector<int> & vec, int x){   
     int lower = 0; int higher = (int)vec.size() - 1;
     int res = -1;
-    while(lower <= higher){
-        int middle = lower + (higher - lower)/ 2;
-        if(x <=vec[middle]){
-            higher = middle;
+    while(lower < higher){
+        int middle = lower + (higher - lower) / 2;
+        if(x <= vec[middle]){
+            higher = middle; 
         }
         else if(x > vec[middle]){
-            lower = middle + 1;
+            lower = middle +1;
         }
         else{
             res = middle;
             break;
         }
-        if(vec[lower] >= x){
-            return lower;
-        }
-        else return -1;
     }
-
+    if(x <= vec[lower]){
+        res = lower;
+    }
 
     return res;
 }
