@@ -34,4 +34,6 @@ char * lineGet(FILE* file){
         
     }
     return line;
+
+    
 }
