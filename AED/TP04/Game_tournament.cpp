@@ -6,6 +6,7 @@ using namespace std;
 inline bool big(int a, int b){
     return a > b;
 }
+
 int main(){
     int n, k, x;
     vector<int> v;

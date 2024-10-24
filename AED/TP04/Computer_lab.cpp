@@ -3,36 +3,28 @@
 #include <vector>
 using namespace std;
 
-typedef struct{
-int entry_hour;
-int leaving_hour;
-
-}Student;
-
-inline bool left_at(Student a, Student b){
-    if( a.entry_hour <= b.entry_hour && a.leaving_hour < b.leaving_hour 
-        || b.entry_hour <= a.entry_hour && b.leaving_hour < a.leaving_hour)
-        return true;
-
-        return false;
-}
-
 int main(){
-int n, count = 0; cin >> n;
-int max = 0;
-vector<int> v1(n);
-vector<int> v2(n);
-for(int i = 0; i < n; i++){
-    cin >> v1[i] >> v2[i];
-}
-sort(v1.begin(),v1.end());
-sort(v2.begin(),v2.end());
-int begin = 0, end = 0;
-for(int i = 0; i <= v2[n-1]; i++){
-    if(v1[begin] == i && begin < v1.size()) {count++; begin++;}
-    if(v2[end] == i && end < v2.size()) {count--; end++;}
-    max = max >= count ? max : count;
-}
+    int n, count = 0; cin >> n;
+    int maximum = 0;
+    vector<int> entries(n);
+    vector<int> leafs(n);
 
-cout << max << endl;
+    for(int i = 0; i < n; i++){
+        cin >> entries[i] >> leafs[i];
+    }
+    
+    sort(entries.begin(),entries.end());
+    sort(leafs.begin(),leafs.end());
+
+    int entry = 0, leave = 0, i = 0;
+    while(entry < int(entries.size()) || leave < int(leafs.size())){
+        if(entries[entry] == i && entry < entries.size()) {count++; entry++;}
+        if(leafs[leave] == i && leave < leafs.size()) {count--; leave++;}
+        if(entry < entries.size() && leave < leafs.size()) i = min(entries[entry],leafs[leave]);
+        else if(entry < entries.size()) i = entries[entry];
+        else i = leafs[leave];
+        maximum = max(maximum,count);
+    }
+
+cout << maximum << endl;
 }
