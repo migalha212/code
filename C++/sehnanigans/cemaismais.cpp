@@ -4,7 +4,6 @@ inteiro principal abre_parentesis fecha_parentesis abre_curvos
 
     inteiro a é um próximo
     frase b é aspas próximo
-    
     se abre_parentesis a é um fecha_parentesis
         abre_curvos
             a é dois próximo

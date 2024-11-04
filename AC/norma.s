@@ -17,7 +17,6 @@ L0 :
     addi a0, a0, 4    # progress in the adress;
     addi t0,t0,-1     # reduce the counter;
     beq a1, t6, L2     # skip ahead if p == 1;
-
     addi t1, a1, 0    # load a counter
 
 L1 :
