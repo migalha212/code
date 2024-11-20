@@ -42,6 +42,7 @@ int main(int argc, char* argv[]){
         if(words) printf("%d\t",nwords);
         if(chars) printf("%d\t",nchars);
         printf("%s\n",argv[i]);
+
         nchars = 0; nwords = 0; nlines = 0;
         fclose(file);
         }
