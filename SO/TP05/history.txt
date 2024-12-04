@@ -1,0 +1,23 @@
+ls
+ls -a
+cd .
+cat myhistory
+cat myhistory.txt
+tac history.txt
+myhistory 2
+exit
+ls -a
+tail forkexample1.c -n 30
+man tail
+man 
+
+
+
+
+
+exit
+man tail
+ls -a
+tail forkexample1.c -n 10
+lol
+exit
