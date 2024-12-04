@@ -24,7 +24,6 @@ int main(int argc, char* argv[]) {
             printf("error: failed to seek");
             exit(EXIT_FAILURE);
         }
-
         int nbytes;
         char buffer[BUFFER_SIZE];
         while(size > BUFFER_SIZE){
