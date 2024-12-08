@@ -181,8 +181,12 @@ public:
         }
     }
 
-    //* 60
-    
+    //* 61
+    int countSCCs(){
+        for (int i = 1; i <= n; i++) { nodes[i].visited = false; nodes[i].dist = 0; }
+        
+    }
+
 };
 
 #endif
