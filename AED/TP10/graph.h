@@ -14,6 +14,7 @@
 #include <vector>
 #include <list>
 #include <queue>
+#include <stack>
 
 class Graph
 {
@@ -28,6 +29,8 @@ class Graph
         std::list<Edge> adj; // The list of outgoing edges (to adjacent nodes)
         bool visited;        // Has the node been visited in a graph traversal?
         int dist = 0;
+        int order = 0;
+        int lowest;
     };
 
     int n;                   // Graph size (vertices are numbered from 1 to n)
@@ -163,7 +166,7 @@ public:
         return dia;
     }
 
-    void dbfs(int i){
+    void dbfs(int i) {
         std::queue<int> q;
         q.push(i);
         nodes[i].visited = true;
@@ -182,11 +185,43 @@ public:
     }
 
     //* 61
-    int countSCCs(){
-        for (int i = 1; i <= n; i++) { nodes[i].visited = false; nodes[i].dist = 0; }
-        
+    int countSCCs() {
+        int order = 1;
+        int count = 0;
+        std::stack<int> s;
+        for (int i = 1; i <= n; i++) { nodes[i].visited = false; nodes[i].order = 0; }
+        for (int i = 1; i <= n; i++) {
+            if (nodes[i].order == 0) {
+                dfs61(i, order, s, count);
+            }
+        }
+        return count;
     }
 
+    void dfs61(int v, int& order, std::stack<int>& s, int& count) {
+        nodes[v].order = order;
+        nodes[v].lowest = order++;
+        s.push(v);
+        nodes[v].visited = true;
+        for (Edge e : nodes[v].adj) {
+            int w = e.dest;
+            if (nodes[w].order == 0) {
+                dfs61(w, order, s, count);
+                nodes[v].lowest = std::min(nodes[v].lowest, nodes[w].lowest);
+            }
+            else if (nodes[w].visited)
+                nodes[v].lowest = std::min(nodes[v].lowest, nodes[w].lowest);
+        }
+        if (nodes[v].order == nodes[v].lowest) {
+            count++;
+            int n = -1;
+            while (!s.empty() && n != v) {
+                n = s.top();
+                nodes[n].visited = false;
+                s.pop();
+            }
+        }
+    }
 };
 
 #endif
