@@ -197,7 +197,7 @@ public:
         }
         return count;
     }
-
+    //* 61
     void dfs61(int v, int& order, std::stack<int>& s, int& count) {
         nodes[v].order = order;
         nodes[v].lowest = order++;
@@ -222,6 +222,42 @@ public:
             }
         }
     }
+
+    //* 62
+    std::list<int> shortestPath(int a, int b) {
+        // setup
+        for (int i = 1; i <= n; i++) { nodes[i].visited = false; nodes[i].dist = 0;nodes[i].order = 0; }
+        std::list<int> res;
+        std::queue<int> q;
+        int c = -1;
+        q.push(a);
+        nodes[a].visited = true;
+        while (!q.empty()) {
+            int u = q.front(); q.pop();
+            for (Edge e : nodes[u].adj) {
+                int w = e.dest;
+                if (!nodes[w].visited) {
+                    q.push(w);
+                    nodes[w].visited = true;
+                    nodes[w].dist = u;
+                }
+                if (w == b) {
+                    c = b;
+                    break;
+                }
+            }
+        }
+        if (c != b) return res;
+        res.push_back(b);
+        while (nodes[c].dist != a) {
+            res.push_front(nodes[c].dist);
+            c = nodes[c].dist;
+        }
+        res.push_front(a);
+        return res;
+    }
+
+
 };
 
 #endif
