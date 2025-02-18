@@ -1,0 +1,5 @@
+3
+pt 5 algoritmos estruturas dados tabela dispersao
+es 5 algoritmos estructuras datos tabla dispersion
+en 5 algorithms structures data table hash
+Algoritmos e Estruturas de Dados: uma UC da LEIC :)
