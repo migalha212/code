@@ -1,6 +1,7 @@
 #pastas desnecessarias
 *.code-workspace
 .vscode
+.idea
 .pytest_cache
 *.exe
 #C library
@@ -8,3 +9,13 @@
 *.so
 *.a
 *.ipynb_checkpoints
+
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+*.cmake
+cmake*
+# DA test lib
+**/lib/googletest/
+**/DA/**/Makefile
