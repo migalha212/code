@@ -1,0 +1,73 @@
+.data
+arrNum: .word 4,6,8
+
+
+
+.text 
+main: la a0,arrNum
+      li a1,3
+      
+      
+# a0: base adress
+# a1: number of elemments
+
+addelems:
+	addi t0,x0,-1
+	addi t2,x0,0
+	
+L1:	beqz  a1,L2	# check if there are any ellemnts
+	lw   t1,0(a0)	# get an ellement
+	add  t2,t1,t2	# add
+	addi a0,a0,4	# next address
+	addi a1,a1,-1 	# number of ellements - 1
+	j    L1		# repeat loop
+	
+L2:	mv   a0,t2
+
+epi:	lw  
+	ret
+
+# a0: base adress
+# a1: number of elemments
+
+oddonesout:
+
+Loop:	beqz a1,End
+	lw   t1,0(a0)
+	andi t1,t1,1
+	beqz t1, Mid
+	addi t0,t0,1
+Mid:	addi a1,a1,-1
+	beqz a1, End
+	addi a0,a0,4
+	j    Loop
+End:	mv   t0,a0
+	ret
+
+# number to compare is in x12, or a2
+# array is in a0
+# number of elements in array is in a1
+Greater:
+	addi t0,x0,0		# set counter to 0
+Loop1: 	beqz a0,End1		# check if any ellements remain
+	lw   t1,0(a0)		# get an ellement
+	blt  t1,x12,Lower	# compares the numbers
+	addi t0,t0,1		#number is greater or equal, +1
+	
+Lower:	addi a1,a1,-1
+	addi a0,a0,4
+	j    Loop1
+	
+End1:	mv   t0,a0
+	ret
+
+# a0: base adress of sequence 1
+# a1: base adress of sequence 2
+# a2: size of each sequence
+equal:
+	addi t0,t0,0
+Loop2: 	lw   t1,0(a0)
+	lw   t2,0(a1)
+	
+
+	
