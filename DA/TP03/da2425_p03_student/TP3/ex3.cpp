@@ -6,13 +6,48 @@
 
 template <class T>
 void unweightedShortestPath(Graph<T> * g, const int &origin) {
-    // TODO
+    Vertex<T> *b;
+    for (Vertex<T>* v : g->getVertexSet()) {
+        v->setVisited(false);
+        v->setPath(nullptr);
+        v->setDist(-1);
+        if (v->getInfo() == origin) {
+            b = v;
+        }
+    }
+
+    std::queue<Vertex<T>*> q;
+    q.push(b);
+    b->setDist(0);
+    while (!q.empty()) {
+        Vertex<T>* cur = q.front();
+        q.pop();
+        cur->setVisited(true);
+        for (auto e : cur->getAdj()) {
+            Vertex<T>* w =e->getDest();
+            if (!w->isVisited()) {
+                q.push(w);
+                w->setDist(cur->getDist() + 1);
+                w->setPath(e);
+                w->setVisited(true);
+            }
+        }
+    }
 }
 
 template <class T>
 static std::vector<T> getPath(Graph<T> * g, const int &origin, const int &dest) {
     std::vector<T> res;
-    // TODO
+    Vertex<T> *a;
+    for (auto v : g->getVertexSet()) {
+        if (v->getInfo() == dest) a = v;
+    }
+    while (a->getInfo() != origin) {
+        res.push_back(a->getInfo());
+        a = a->getPath()->getOrig();
+    }
+    res.push_back(origin);
+    std::reverse(res.begin(),res.end());
     return res;
 }
 

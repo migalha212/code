@@ -9,7 +9,14 @@
  */
 template <typename T>
 void dfsKruskalPath(Vertex<T> *v) {
- // TODO
+ for (auto e : v->getAdj()) {
+     // only edges that belong to the MST will be in the !selected set
+     if (!e->isSelected()) {
+         // update the path so it has its ancestor
+        e->getDest()->setPath(e);
+     }
+ }
+
 }
 
 template <typename T>
@@ -18,11 +25,13 @@ std::vector<Vertex<T> *> kruskal(Graph<T> *g) {
     for (auto v : g->getVertexSet()) {
         v->setInfo(i++);
         v->setVisited(false);
+        v->setPath(nullptr);
     }
+
     // create a set for each vertex, for now every vertex is a SCC
     UFDS vset(g->getVertexSet().size());
     // The ordered set of all edges
-    std::vector<Edge<T>> edges;
+    std::vector<Edge<T>*> edges;
     for (auto v : g->getVertexSet()) {
         for (auto e : v->getAdj()) {
             if (!e->isSelected() && !e->getReverse()->isSelected()) {
@@ -32,10 +41,17 @@ std::vector<Vertex<T> *> kruskal(Graph<T> *g) {
             }
         }
     }
-    std::sort(edges.begin(),edges.end());
+    std::sort(edges.begin(),edges.end(),[](Edge<int>* a,Edge<int>* b){ return a->getWeight() < b->getWeight();});
+    // go through every edge ir order of weight
     for (auto e : edges) {
-        if (vset.findSet(e.getOrig()) != vset.findSet(e.getDest())) {
-            vset.linkSets(e.getOrig(),e.getDest());
+        // since the edges set is ordered, whenever we find a connection to a new set we can assume it is minimal
+        if (!vset.isSameSet(e->getOrig()->getInfo(),e->getDest()->getInfo())) {
+            // if edge belongs to the MST then it is moved to a different set
+            e->setSelected(false);
+            // join the 2 new different sets found
+            vset.linkSets(e->getOrig()->getInfo(),e->getDest()->getInfo());
+            // correct the paths of the nodes to include the new ones as their ancestors
+            dfsKruskalPath(e->getOrig());
         }
     }
     return g->getVertexSet();

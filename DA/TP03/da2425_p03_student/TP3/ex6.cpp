@@ -4,14 +4,44 @@
 // Function to perform DFS and find an augmenting path
 template <class T>
 bool dfsFindAugmentingPath(Vertex<T>* v, Vertex<T>* t, double& flow) {
-    // TODO
-    return false;
+    v->setVisited(true);
+    if (v == t) return true; // we have found an augmented path
+    for (auto e : v->getAdj()) {
+        auto w = e->getDest();
+        if (e->getWeight() - e->getFlow() > 0 && !w->isVisited()) {
+            flow = std::min(flow, e->getWeight() - e->getFlow());
+            w->setPath(e);
+            dfsFindAugmentingPath(w,t,flow);
+        }
+    }
+    return t->isVisited();
 }
 
 // Ford-Fulkerson algorithm
 template <class T>
 void fordFulkerson(Graph<T>* g, int source, int target) {
-    // TODO
+    Vertex<T>* a;
+    Vertex<T>* b;
+    for (auto v : g->getVertexSet()) {
+        if (v->getInfo() == source) a = v;
+        else if (v->getInfo() == target) b = v;
+        for (auto e : v->getAdj()) {
+            // the edge will have the residual capacity (capacity - flow)
+            e->setFlow(0);
+
+        }
+    }
+    double flow = INF;
+    while (dfsFindAugmentingPath(a,b,flow)) {
+         Vertex<T>* c = b;
+         while (c != a) {
+             auto e = c->getPath();
+             e->setFlow(e->getFlow() + flow);
+             c->setVisited(false);
+             c = e->getOrig();
+         }
+         flow = INF;
+     }
 }
 
 /// TESTS ///
