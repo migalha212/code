@@ -1,0 +1,45 @@
+@startuml umlF
+skinparam ComponentStyle uml1
+
+package "Online System" {
+    component [Cultural Program] as cp
+    component [Ticket Reservation] as reservation
+    component [Registration] as registration
+}
+
+package "Ticket Booth"{
+    component [Cashier] as cashier
+    component [Sell tickets] as sell
+    component [Check Reservations] as check
+}
+
+component [Program Manager] as manager
+component [Customer] as customer
+component [Venue Management] as venue
+component [Statistics & Reports] as reports
+
+
+interface Registration as reg
+interface ReservationHandling as rh
+interface "Program Management" as pm
+interface Sales as sales
+
+customer --> reg
+customer --> rh
+customer --> cp
+
+registration <.. reg
+reservation ..> rh
+cp <-- pm
+venue <-- pm
+manager <.. pm
+
+cashier --> sales
+sell <-- sales
+check -- rh
+
+cp <.. reports
+sell <.. reports
+
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+
+
+node "Casa da Música Data Center" {
+
+    node "Database Server" {
+        database "SiGIE Database" as db
+    }
+
+    node "Web Server" {
+        artifact "SiGIE Backend" as backend
+    }
+
+
+}
+
+node "User Devices" {
+
+    node "Mobile Device" {
+        artifact "SiGIE Mobile App" as mobileapp
+    }
+
+    node "Web Browser" {
+        artifact "SiGIE Web App" as webapp
+    }
+
+
+}
+
+node "POS System" {
+    artifact "Cashier Terminal" as pos
+}
+
+webapp -> backend : HTTP Requests
+mobileapp -> backend : API Requests (REST/GraphQL)
+pos -> backend : Ticket Sales & Reservations
+backend -> db : SQL Queries
+@enduml
