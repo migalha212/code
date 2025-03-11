@@ -1,0 +1,37 @@
+body {
+    display: grid;
+    max-width: 60em;
+    width: 60em;
+    margin: 0 auto; 
+    gap: 0;
+    grid-template-columns: 80% 20%;
+}
+
+body > header{
+    grid-area: 1 / 1 /  1 / span 2;
+}
+body >  nav#menu{
+    grid-area: 2 / 1 / span 1 / span 1;
+}
+div#signup{
+    text-align: right;
+    padding-right: 3em;
+}
+aside#related {
+    grid-area: 2 / 2 / span 10 / span 1;
+}
+nav#menu ul{
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+nav#menu li{
+    display: flex;
+    padding: 0;
+    flex-grow: 1;
+    justify-content: center;
+}
+article footer {
+    padding: 1em 0;
+    margin: 2em 0;
+}
