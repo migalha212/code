@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700|Poppins:400,700');
+#menu input{display: none;}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+h1 h2{
+    font-family: 'Lora';
+}
+p {
+    font-family: 'Poppins';
+    font-size: 15px;
+}
+body > header{
+    background-color: #046DD5;
+    color: white;
+}
+
+header h1{
+    font-size: xx-large;
+    font-weight: bold;
+    padding: 3px 0;
+    margin: 3px 10px;
+}
+header h2{
+    font-weight: 200;
+        padding: 3px 0;
+    margin: 3px 10px;
+}
+
+#menu li {
+    border-top: solid 4px;
+    text-align: center;
+    list-style-type: none;
+}
+
+#menu li:nth-child(1) { border-top-color:#E1493E; }
+#menu li:nth-child(2) { border-color: #8ABA56; }
+#menu li:nth-child(3) { border-color: #5B4282; }
+#menu li:nth-child(4) { border-color: #FF8932; }
+#menu li:nth-child(5) { border-color: #19B6E9; }
+#menu li:nth-child(6) { border-color: #E84C8B;}
+
+aside#related {
+    background-color: #2A2F33;
+    color: white;
+    padding: 1em;
+}
+
+section#news h1 {
+    position: absolute;
+    color: white;
+    text-shadow: #2A2F33 1px 1px 10px;
+}
+section#news p:first-of-type::first-letter {
+    font-size: 2em; /* Adjust as needed */
+    font-weight: 400;
+}
+section a:hover{
+background-color: #2A2F33;
+}
+article footer{
+    background-color: #F4655F;
+    color: white;
+}
+footer a{
+    text-decoration:underline;
+}
+footer{
+    background-color: #2A2F33;
+    color: white;
+}
