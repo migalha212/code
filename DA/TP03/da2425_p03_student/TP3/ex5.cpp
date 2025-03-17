@@ -4,20 +4,29 @@
 #include "../data_structures/Graph.h"
 
 // Function to test the given vertex 'w' and visit it if conditions are met
-template <class T>
-void testAndVisit(std::queue< Vertex<T>*> &q, Edge<T> *e, Vertex<T> *w, double residual) {
+template<class T>
+void testAndVisit(std::queue<Vertex<T> *> &q, Edge<T> *e, Vertex<T> *w, double residual) {
     // TODO
 }
 
 // Function to find an augmenting path using Breadth-First Search
-template <class T>
+template<class T>
 bool findAugmentingPath(Graph<T> *g, Vertex<T> *s, Vertex<T> *t) {
-    // TODO
-   return true;
+    std::queue<Vertex<T> *> q;
+    s->setVisited(true);
+    q.push(s);
+    while (!q.empty()) {
+        Vertex<T>* w = q.front();
+        q.pop();
+        for (auto e : w->getAdj()) {
+            testAndVisit(q,e,e->getDest());
+        }
+    }
+    return true;
 }
 
 // Function to find the minimum residual capacity along the augmenting path
-template <class T>
+template<class T>
 double findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t) {
     double f = INF;
     // TODO
@@ -25,15 +34,25 @@ double findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t) {
 }
 
 // Function to augment flow along the augmenting path with the given flow value
-template <class T>
+template<class T>
 void augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f) {
     // TODO
 }
 
 // Function implementing the Edmonds-Karp algorithm
-template <class T>
+template<class T>
 void edmondsKarp(Graph<T> *g, int source, int target) {
-    // TODO
+    // Vertex<T> * a, b;
+    // for (auto v: g->getVertexSet()) {
+    //     if (v->getInfo() == source) a = v;
+    //     else if (v->getInfo() == target) b = v;
+    //     for (auto e: v->getAdj()) {
+    //         e->setFlow(0);
+    //     }
+    // }
+    //
+    // while (findAugmentingPath(g, a, b)) {
+    // }
 }
 
 /// TESTS ///
@@ -42,7 +61,7 @@ void edmondsKarp(Graph<T> *g, int source, int target) {
 TEST(TP3_Ex5, test_edmondsKarp) {
     Graph<int> myGraph;
 
-    for(int i = 1; i <= 6; i++)
+    for (int i = 1; i <= 6; i++)
         myGraph.addVertex(i);
 
     myGraph.addEdge(1, 2, 3);
@@ -57,15 +76,16 @@ TEST(TP3_Ex5, test_edmondsKarp) {
     edmondsKarp(&myGraph, 1, 6);
 
     std::stringstream ss;
-    for(auto v : myGraph.getVertexSet()) {
+    for (auto v: myGraph.getVertexSet()) {
         ss << v->getInfo() << "-> (";
-        for (const auto e : v->getAdj())
+        for (const auto e: v->getAdj())
             ss << (e->getDest())->getInfo() << "[Flow: " << e->getFlow() << "] ";
         ss << ") || ";
     }
 
     std::cout << ss.str() << std::endl << std::endl;
 
-    EXPECT_EQ("1-> (2[Flow: 3] 3[Flow: 2] ) || 2-> (5[Flow: 1] 4[Flow: 2] 3[Flow: 0] ) || 3-> (5[Flow: 2] ) || 4-> (6[Flow: 2] ) || 5-> (6[Flow: 3] ) || 6-> () || ", ss.str());
-
+    EXPECT_EQ(
+        "1-> (2[Flow: 3] 3[Flow: 2] ) || 2-> (5[Flow: 1] 4[Flow: 2] 3[Flow: 0] ) || 3-> (5[Flow: 2] ) || 4-> (6[Flow: 2] ) || 5-> (6[Flow: 3] ) || 6-> () || ",
+        ss.str());
 }
