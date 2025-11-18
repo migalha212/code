@@ -8,4 +8,4 @@ safetail :: [a] -> [a]
 safetail l 
     | len <= 0 = []
     | otherwise = drop 1 l 
-    where len = (length l -) 1
+    where len = length l - 1

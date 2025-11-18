@@ -10,7 +10,7 @@ dec2int2 = foldl ((+) . (*10)) 0
 -- eta reductions /\
 
 myReverse :: [a] -> [a]
-myReverse = foldl (\acc x -> x:acc) []
+myReverse = foldl (\acc x -> x:acc) [] 
 
 goodLuck :: [a] -> [a]
 goodLuck = foldl (flip (:)) []
