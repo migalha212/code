@@ -42,3 +42,7 @@ bfs([[N1|T]-Fs|Ns], Nf, Sol):-
     append(Ns, Ns1, Ns2),
     bfs(NS2,Nf,Sol).
 
+
+% insertRec(1,2,3,4,5)
+
+insertRec()

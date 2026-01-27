@@ -130,3 +130,29 @@ areMarried(X,Y,Year):-
     divorced(X,Y,Year2),
     Year2 >= Year.
 
+% children(+Person, -Children)
+children(Person,Children):-
+    findall(Child, parent(Person,Child),Children).
+
+% children_of(+ListOfPeople, -ListOfPairs)
+children_of(ListOfPeople, -ListOfPairs):-
+    findall(P-C,(member(P,ListOfPeople), children(P,C)), ListOfPairs).
+
+% family(-F)
+family(F):-
+    findall(Person, (parent(Person, _); parent(_, Person)), All),
+    sort(All, F).
+
+% couple(?C)
+couple(X-Y):-
+    married(X,Y,_),
+    X @< Y.
+couple(X-Y):-
+    married(Y,X,_),
+    X @< Y.
+
+% couples(-List)
+couples(List):-
+    findall(C, couple(C), List).
+
+
